@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="top">
+    <ul class="login">
+        <li>
+            <a href="login.html" name="register">登陆</a>
+            <a href="register.html" name="login">注册</a>
+        </li>
+        <li><a>订单</a></li>
+        <li><a name="cart">购物车</a></li>
+    </ul>
+</div>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/商城首页.css">
+    <link rel="stylesheet" href="css/lunbo.css">
+</head>
+<body>
+<header class="logo">
+    <a href="商城首页.html">
+        <img src="img/一淘.png">
+    </a>
+    <div class="input">
+        <input class="search">
+        <button class="butt">
+            <img src="img/search.png" >
+        </button>
+        <a href="#"  class="app">
+            <img src="img/app.png" style="margin-left: 550px">
+        </a>
+    </div>
+    <div class="QR code">
+        <img src="//img.alicdn.com/tps/TB1pjAHPXXXXXc_XFXXXXXXXXXX-238-323.png" style="position: absolute;height: 160px;width: 110px;margin-left: 1110px;display: none" class="codeImg" >
+    </div>
+</header>
+<div class="navitor">
+    <ul class="oul"></ul>
+</div>
+<div class="content">
+
+<div class="text">
+    <ul class="oul2"></ul>
+</div>
+</div>
+<div class="decomposition"></div>
+<footer class="bottom">
+    <div class="bottom-dl">
+        <dl >
+            <dt>关于我们</dt>
+            <dd><a href="#">关于一淘</a></dd>
+            <dd><a href="#">法律声明</a></dd>
+            <dd><a href="#">诚聘人才</a></dd>
+            <dd><a href="#">廉政邮箱</a></dd>
+        </dl>
+        <dl>
+            <dt>帮助中心</dt>
+            <dd><a href="#">新手指南</a></dd>
+            <dd><a href="#">关于返利</a></dd>
+            <dd><a href="#">关于集分宝</a></dd>
+            <dd><a href="#">关于会员特权</a></dd>
+            <dd><a href="#">联系客服</a></dd>
+        </dl>
+        <dl>
+            <dt>手机一淘</dt>
+            <dd><a href="#"><img src="//img.alicdn.com/tps/TB1pjAHPXXXXXc_XFXXXXXXXXXX-238-323.png" style="height:162px;width: 119px"></a></dd>
+        </dl>
+        <dl>
+            <dt>优惠地图</dt>
+            <dd><a href="#">品牌特卖</a></dd>
+            <dd><a href="#">限时闪购</a></dd>
+        </dl>
+        <dl>
+            <dt>商家合作</dt>
+            <dd><a href="#">报名入口</a></dd>
+            <dd><a href="#">商家端问题</a></dd>
+        </dl>
+    </div>
+    <div class="link-list">
+        <p class="link-list-p">
+            <a href="#">阿里巴巴集团</a>
+            <a href="#">淘宝网</a>
+            <a href="#">天猫</a>
+            <a href="#">聚划算</a>
+            <a href="#">全球速卖通</a>
+            <a href="#">阿里巴巴国际交易市场</a>
+            <a href="#">1688</a>
+            <a href="#">阿里妈妈</a>
+            <a href="#">阿里旅行·去啊</a>
+            <a href="#">万网</a>
+            <a href="#">高德</a>
+            <a href="#">优视</a>
+            <a href="#">友盟</a>
+            <a href="#">酷盘</a>
+            <a href="#">虾米</a>
+            <a href="#">天天动听</a>
+            <a href="#">来往</a>
+            <a href="#">钉钉</a>
+            <a href="#">11 Main</a>
+            <a href="#">支付宝</a>
+        </p>
+        <p class="link-list-copyright">
+            Copyright © 2010-2017 ETAO.COM 版权所有
+            增值电信业务经营许可证：浙B2-20080224
+        </p>
+    </div>
+</footer>
+</body>
+<script src="js/myajax.js" charset="utf-8"></script>
+<script>
+    function getQueString(name){
+        var search=location.search.substr(1);
+        var reg=new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+        var result=search.match(reg);
+        if(result===null)return null;
+        return decodeURIComponent(result[2]);
+
+    }
+    var cat_id=getQueString('cat_id');
+    var oUl = document.querySelector('.oul');
+    var oUl2=document.querySelector(".oul2");
+    var oA=document.querySelector("a[name=cart]");
+    var oLogin=document.querySelector("a[name=login]");
+    var oUsername=document.querySelector("a[name=register]");
+    myajax.get('http://h6.duchengjiu.top/shop/api_cat.php', {}, function(error, responseText) {
+        var json = JSON.parse(responseText);
+        var data = json.data;
+
+        for (var i = 0; i < data.length; i++) {
+            var obj = data[i];
+
+            oUl.innerHTML += `<li><a href="商城首页.html?cat_id=${obj.cat_id}">${ obj.cat_name}</a></li>`;
+            if(localStorage.username){
+                oA.href="cart.html";
+                oUsername.innerHTML="你好" + localStorage.username;
+                oLogin.innerHTML="退出";
+                oLogin.onclick=function(){
+                    localStorage.username="";
+                    oLogin.href="商城首页.html"
+                };
+                if( oUsername.innerHTML===("你好" + localStorage.username)){
+                    oUsername.href="商城首页.html"
+                }
+            }
+            else if(!localStorage.username){
+                oA.onclick=function(){
+                    alert("请先登录");
+                }
+            }
+        }
+    });
+    var oSearch=document.querySelector(".search");
+    var search_text = getQueryString('search_text');
+    var butt=document.querySelector(".butt");
+    var oContent=document.querySelector(".content");
+    myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {search_text: search_text}, function(err,responseText){
+        var json = JSON.parse(responseText);
+        console.log(json);
+        var data = json.data;
+        if (data.length === 0) {
+            oContent.innerHTML = "未搜索到商品, <span id='second'>5</span>秒后跳回首页";
+            var oSecond = oContent.querySelector('#second');
+            var timer = setInterval(() => {
+                var second = parseInt(oSecond.innerText);
+            oSecond.innerText = --second;
+        }, 1000);
+            setTimeout(() => {
+                clearInterval(timer);
+            location.href = '商城首页.html';
+        }, 5000);
+            return;
+        }
+        for (var i = 0; i < data.length; i++) {
+            var obj = data[i];
+            oUl2.innerHTML += `<li class="goods">
+          <a href="goods.html?goods_id=${obj.goods_id}"><img src="${obj.goods_thumb}" /></a>
+          <span>${obj.goods_name}</span>
+          <p>￥:${obj.price}</p>
+        </li>`;
+        }
+        oSearch.onkeyup = function(event) {
+            if (event.keyCode === 13) {
+                location.href = 'search.html?search_text=' + this.value;
+            }
+            var self=this;
+            butt.onclick= function(event) {
+                location.href = 'search.html?search_text=' +  self.value;
+            }
+        }
+    });
+    var oApp=document.querySelector(".app");
+    var code=document.querySelector(".codeImg");
+    oApp.onmouseover=function(){
+        code.style.display='block';
+    }
+    oApp.onmouseout=function(){
+        code.style.display='none'
+    }
+</script>
+</html>

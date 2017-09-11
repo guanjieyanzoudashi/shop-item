@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background-image: url("timg.jpg");
+        }
+        .out{
+            width: 600px;
+            height: 300px;
+            margin: 0 auto;
+            background-color: gray;
+            position: relative;
+            top: 100px;
+            opacity: 0.8;
+
+        }
+        .inside{
+            height: 100px;
+            width: 300px;
+            margin-left: 150px;
+            margin-top: 100px;
+            position: absolute;
+            text-align: center;
+
+        }
+        input{
+            width: 300px;
+
+        }
+        .login{
+            width: 100px;
+            margin-top: 20px;
+            color: forestgreen;
+            background-color: lightgoldenrodyellow;
+
+        }
+    </style>
+</head>
+<body>
+<div class="out">
+    <div class="inside">
+        <input type="text" name="username" placeholder="请输入用户名">
+        <input type="password" name="password" placeholder="请输入密码">
+        <input type="button" value="登录" class="login">
+    </div>
+
+</div>
+</body>
+<script src="js/myajax.js" charset="utf-8"></script>
+<script>
+
+    var oUsername = document.querySelector('input[name=username]');
+    var oPassword = document.querySelector('input[name=password]');
+    var oBtn = document.querySelector('input[type=button]');
+    oBtn.onclick = function() {
+        //js校验
+        //直接调用登录的接口
+        myajax.post('http://h6.duchengjiu.top/shop/api_user.php',
+            {
+                status: 'login',
+                username: oUsername.value,
+                password: oPassword.value
+            }, function(error, responseText){
+                var json = JSON.parse(responseText);
+                if(json.message==="登录成功"){
+                    localStorage.token = json.data.token;
+                    localStorage.username = json.data.username;
+                    alert('登陆成功');
+                    location.href="商城首页.html";
+                }
+                console.log(json);
+
+
+                console.log(localStorage.token);
+                console.log(localStorage.username);
+            });
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/商城首页.css">
+    <style>
+        table,td {
+            border: 1px solid orange;
+            padding: 10px;
+            vertical-align: middle;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            text-align: center;
+        }
+        table img {
+            border-radius: 50%;
+            width: 100px;
+        }
+         .main{
+            width: 960px;
+            /*height: 550px;*/
+            margin: 0 auto;
+
+
+        }
+    </style>
+</head>
+<body>
+<div class="top">
+
+    <ul class="login">
+        <li>
+            <a href="login.html" name="register">登陆</a>
+            <a href="register.html" name="login">注册</a>
+        </li>
+        <li><a>订单</a></li>
+        <li><a name="cart">购物车</a></li>
+    </ul>
+</div>
+<header class="logo">
+    <a href="商城首页.html">
+        <img src="img/一淘.png">
+    </a>
+    <div class="input">
+        <input class="search">
+        <button class="butt">
+            <img src="img/search.png" >
+        </button>
+        <a href="#"  class="app">
+            <img src="img/app.png" style="margin-left: 550px">
+        </a>
+    </div>
+    <div class="QR code">
+        <img src="//img.alicdn.com/tps/TB1pjAHPXXXXXc_XFXXXXXXXXXX-238-323.png" style="position: absolute;height: 160px;width: 110px;margin-left: 1110px;display: none" class="codeImg" >
+    </div>
+
+<div class="navitor">
+    <ul class="oul"></ul>
+</div>
+</header>
+<!--<div style="height: 439px">-->
+<div class="main">
+    <table>
+        <tr>
+            <td>商品ID</td>
+            <td>图片</td>
+            <td>名称</td>
+            <td>数量</td>
+            <td>单价</td>
+            <td>总价</td>
+            <td>操作</td>
+        </tr>
+    </table>
+    <div>小计：<span id="sum">0</span> <input type="button" id="clear-cart" value="清空购物车"> <a href="checkout.html">结算</a></div>
+</div>
+<!--</div>-->
+<footer class="bottom">
+    <div class="bottom-dl">
+        <dl >
+            <dt>关于我们</dt>
+            <dd><a href="#">关于一淘</a></dd>
+            <dd><a href="#">法律声明</a></dd>
+            <dd><a href="#">诚聘人才</a></dd>
+            <dd><a href="#">廉政邮箱</a></dd>
+        </dl>
+        <dl>
+            <dt>帮助中心</dt>
+            <dd><a href="#">新手指南</a></dd>
+            <dd><a href="#">关于返利</a></dd>
+            <dd><a href="#">关于集分宝</a></dd>
+            <dd><a href="#">关于会员特权</a></dd>
+            <dd><a href="#">联系客服</a></dd>
+        </dl>
+        <dl>
+            <dt>手机一淘</dt>
+            <dd><a href="#"><img src="//img.alicdn.com/tps/TB1pjAHPXXXXXc_XFXXXXXXXXXX-238-323.png" style="height:162px;width: 119px"></a></dd>
+        </dl>
+        <dl>
+            <dt>优惠地图</dt>
+            <dd><a href="#">品牌特卖</a></dd>
+            <dd><a href="#">限时闪购</a></dd>
+        </dl>
+        <dl>
+            <dt>商家合作</dt>
+            <dd><a href="#">报名入口</a></dd>
+            <dd><a href="#">商家端问题</a></dd>
+        </dl>
+    </div>
+    <div class="link-list">
+        <p class="link-list-p">
+            <a href="#">阿里巴巴集团</a>
+            <a href="#">淘宝网</a>
+            <a href="#">天猫</a>
+            <a href="#">聚划算</a>
+            <a href="#">全球速卖通</a>
+            <a href="#">阿里巴巴国际交易市场</a>
+            <a href="#">1688</a>
+            <a href="#">阿里妈妈</a>
+            <a href="#">阿里旅行·去啊</a>
+            <a href="#">万网</a>
+            <a href="#">高德</a>
+            <a href="#">优视</a>
+            <a href="#">友盟</a>
+            <a href="#">酷盘</a>
+            <a href="#">虾米</a>
+            <a href="#">天天动听</a>
+            <a href="#">来往</a>
+            <a href="#">钉钉</a>
+            <a href="#">11 Main</a>
+            <a href="#">支付宝</a>
+        </p>
+        <p class="link-list-copyright">
+            Copyright © 2010-2017 ETAO.COM 版权所有
+            增值电信业务经营许可证：浙B2-20080224
+        </p>
+    </div>
+</footer>
+</body>
+<script src="js/myajax.js"></script>
+<script>
+    function getQueString(name){
+        var search=location.search.substr(1);
+        var reg=new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+        var result=search.match(reg);
+        if(result===null)return null;
+        return decodeURIComponent(result[2]);
+    }
+    var cat_id=getQueString('cat_id');
+    var oUl = document.querySelector('.oul');
+    var oA=document.querySelector("a[name=cart]");
+    myajax.get('http://h6.duchengjiu.top/shop/api_cat.php', {}, function(error, responseText){
+        var json = JSON.parse(responseText);
+        var data = json.data;
+        for (var i = 0; i < data.length; i++) {
+            var obj = data[i];
+            oUl.innerHTML += `<li><a href="商城首页.html?cat_id=${obj.cat_id}">${ obj.cat_name}</a></li>`;
+        }
+//        document.querySelector(".top").innerHTML+=`<div class="login"><a href="login.html" name="register">登陆</a><a href="register.html" name="login">注册</a></div>`
+        if(localStorage.username){
+            var oUsername=document.querySelector("a[name=register]");
+            var oLogin=document.querySelector("a[name=login]");
+            oA.href="cart.html";
+            oUsername.innerHTML="你好" + localStorage.username;
+            oLogin.innerHTML="退出";
+            oLogin.onclick=function(){
+                localStorage.username="";
+                oLogin.href="商城首页.html"
+            };
+            if( oUsername.innerHTML===("你好" + localStorage.username)){
+                oUsername.href="商城首页.html"
+            }
+        }
+        else if(!localStorage.username){
+            oA.onclick=function(){
+                alert("请先登录");
+            }
+        }
+    });
+    var oTable = document.querySelector('table');
+    var oSum = document.querySelector('#sum');
+    myajax.get('http://h6.duchengjiu.top/shop/api_cart.php', {token: localStorage.token}, function(err, responseText){
+        var json = JSON.parse(responseText);
+        console.log(json);
+        var data = json.data;
+        for (var i = 0; i < data.length; i++) {
+            var obj = data[i];
+            //一件商品的总价
+            obj.goods_sum = obj.goods_price * obj.goods_number;
+            oTable.innerHTML += `
+                          <tr>
+                            <td name="goods_id">${obj.goods_id}</td>
+                            <td><img src="${obj.goods_thumb}" ></td>
+                            <td>${obj.goods_name}</td>
+                            <td><input data-id="${obj.goods_id}" type="number" name="number" min="1" max="10" value="${obj.goods_number}" /></td>
+                            <td>￥${obj.goods_price}</td>
+                            <td name="sum">￥${obj.goods_sum}</td>
+                            <td><input data-id="${obj.goods_id}" type="button" name="delete" value="删除"></td>
+                          </tr>
+                          `;
+        }
+        getSum();
+    });
+
+    oTable.onchange = function(event) {
+        event = event || window.event;
+        var target = event.target || event.srcElement;
+        if (target.name === 'number') {
+            console.log(target.value, target.dataset.id);
+            var goods_id = target.dataset.id;
+            var number = target.value;
+            myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token='+localStorage.token,
+                {goods_id, number},
+                function(err, responseText) {
+                    var json = JSON.parse(responseText);
+                    console.log(json);
+                    if (json.code === 0) {
+                        // alert('更新购物车成功');
+                        //修改总价和小计
+                        var goods_price = parseInt(target.parentNode.nextElementSibling.innerText);
+                        target.parentNode.nextElementSibling.nextElementSibling.innerText = parseInt((target.value) * goods_price);
+                        getSum();
+                    }
+                })
+        }
+    }
+    oTable.addEventListener('click', function(event){
+        event = event || window.event;
+        var target = event.target || event.srcElement;
+        if (target.name === 'delete') {
+            if (!confirm('确认要删除吗')) { //当你选择的是取消则不执行任何事情
+                return;
+            }
+            //得到商品ID
+            var goods_id = target.dataset.id;
+            var number = 0;
+            myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token='+localStorage.token,
+                {goods_id, number},
+                (err, responseText)  => {
+                var json = JSON.parse(responseText);
+            console.log(json);
+            if (json.code === 0) {
+                // alert('更新购物车成功');
+                //删除整个TR
+                var tr = target.parentNode.parentNode;
+                tr.parentNode.removeChild(tr);
+                //显示总价
+                getSum();
+            }
+        })
+        }
+    });
+
+    var oClearCart = document.querySelector('#clear-cart');
+    oClearCart.onclick = () => {
+        if (!confirm('确认要清空整个购物车吗？')) {
+            return;
+        }
+        //得到所有的商品ID
+        var oGoodsIds = document.querySelectorAll('td[name=goods_id]');
+        for (var i = 0; i < oGoodsIds.length; i++) {
+            var td = oGoodsIds[i];
+            var goods_id = parseInt(td.innerText);
+            var number = 0;
+            (function(td){
+                myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token='+localStorage.token,
+                    {goods_id, number},
+                    (err, responseText) => {
+                    var json = JSON.parse(responseText);
+                console.log(json);
+                if (json.code === 0) {
+                    // alert('更新购物车成功');
+                    //删除整个TR
+                    var tr = td.parentNode;
+                    tr.parentNode.removeChild(tr);
+                    //显示总价
+                    getSum();
+                }
+            });
+            })(td);
+        }
+    }
+
+    //显示出总价
+    function getSum() {
+        var oSums = document.querySelectorAll('td[name=sum]');
+        var sum = 0;
+        for (var i = 0; i < oSums.length; i++) {
+            sum += parseInt(oSums[i].innerText.substr(1));
+        }
+        localStorage.sum = sum;
+        oSum.innerText = "￥" + sum;
+    }
+    var oApp=document.querySelector(".app");
+    var code=document.querySelector(".codeImg");
+    oApp.onmouseover=function(){
+        code.style.display='block';
+    }
+    oApp.onmouseout=function(){
+        code.style.display='none'
+    }
+</script>
+</html>

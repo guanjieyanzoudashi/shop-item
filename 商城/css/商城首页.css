@@ -1,0 +1,236 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.top{
+    height: 40px;
+    background-color: #FB3434;
+}
+.login{
+    float: right;
+    height: 40px;
+    line-height: 40px;
+}
+.top .login li{
+    list-style: none;
+    float: left;
+    font-size: 10px;
+}
+
+.top .login li a{
+    color: white;
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+.login li  a:hover{
+    color: orange;
+}
+.logo img{
+    width: 310px;
+    height: 110px;
+    line-height: 110px;
+    margin-left: 75px;
+}
+.input input{
+    height: 40px;
+    width: 434px;
+    border: solid 1px orange;
+    outline:none;
+    position: absolute;
+    margin-top: 36px;
+    padding-left:10px;
+}
+.input button{
+    height: 42px;
+    width: 60px;
+    line-height: 42px;
+    position: absolute;
+    margin-top: 36px;
+    margin-left: 434px;
+    background-color: orange;
+    border: 0;
+    cursor: pointer;
+    outline:none;
+}
+.input button img{
+    height: 22px;
+    width: 22px;
+    background-color: orange;
+    margin-left: 0;
+    margin-top: 9px;
+}
+/*.QR code img{*/
+    /*position: absolute;*/
+    /*height: 160px;*/
+    /*width: 110px;*/
+
+/*}*/
+/*.QR code{*/
+    /*height: 160px;*/
+    /*width: 110px;*/
+/*}*/
+.oul{
+    display:table;
+    height:50px;
+    margin:0 auto;
+
+}
+.input{
+    height: 110px;
+    margin-top: -114px;
+    margin-left: 400px;
+    position: relative;
+}
+
+.oul> li {
+    float: left;
+    list-style: none;
+    margin-right: 30px;
+    height: 50px;
+    background-color: orange;
+    line-height: 50px;
+    /*padding: 10px;*/
+    color: white;
+}
+
+.oul> li  a:hover{
+    background-color: white;
+    text-decoration: none;
+    color: red;
+}
+.oul> li  a{
+    display: block;
+    height: 50px;
+    width: 80px;
+}
+.oul2>li{
+    float: left;
+    list-style: none;
+    height: 340px;
+    width: 220px;
+    background-size:100%;
+    Background-repeat:no-repeat;
+    margin-top: 20px ;
+    margin-left: 35px;
+    color: gray;
+    border: solid 1px;
+}
+.goods:hover{
+    border: 1px solid red;
+}
+.navitor{
+    background-color: orange;
+    height: 50px;
+    text-align: center;
+}
+.navitor a{
+    text-decoration: none;
+    color: white;
+}
+.navitor a:hover{
+    text-decoration: none;
+    color: red;
+}
+.text{
+    margin: 0 auto;
+    background-color: #F6F6F6;
+
+}
+.oul2{
+    display:table;
+    margin: 0 auto;
+    width: 1300px;
+    background-color:#FAFAD2;
+
+}
+
+span{
+    display: block;
+    height: 50px;
+    width: 220px;
+    text-align: center;
+    color:black;
+    font-size: 14px;
+}
+.oul2 li a img{
+    height: 230px;
+    width: 220px;
+}
+.oul2 p{
+    float: right;
+    color: orange;
+    margin-top: 30px;
+
+}
+.decomposition{
+    height: 35px;
+    background-color: #F6F6F6;
+}
+.bottom{
+    height: 373px;
+    background-color: #444444;
+}
+.bottom-dl{
+    margin: 0 auto;
+    height: 235px;
+    width: 1100px;
+
+}
+.bottom-dl dl{
+    float: left;
+    padding-left: 68px;
+    padding-right: 68px;
+    margin-top: 25px;
+}
+.bottom-dl dt{
+    color: white;
+    font-size: 18px;
+    font-family: 幼圆;
+    margin-bottom: 15px;
+}
+.bottom-dl dd{
+    font-size: 10px;
+    font-family: 幼圆;
+    margin-bottom: 10px;
+}
+.link-list{
+    font-size: 10px;
+    text-align: center;
+    margin-top: 50px;
+}
+.link-list a{
+    color: #998265;
+    padding-right: 10px;
+    text-decoration: none;
+}
+.link-list a :hover{
+    text-decoration: none;
+    color: red;
+}
+.link-list-p{
+    width: 810px;
+    height:50px;
+    text-align: center;
+    margin: 0 auto;
+
+}
+.link-list-copyright{
+    width: 250px;
+    height: 35px;
+    text-align: center;
+    margin: 0 auto;
+    color: #998265;
+}
+dd a {
+    text-decoration: none;
+    color: white;
+}
+dd a :hover{
+    text-decoration: none;
+    color: red;
+}
+.advertising{
+margin-top: -108px;
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商品详情页</title>
+    <link rel="stylesheet" href="css/商城首页.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        /*body{*/
+            /*background-color: #FAFAD2;*/
+        /*}*/
+
+        .text{
+           text-align: center;
+           margin-top: 30px;
+
+       }
+        .goodsName{
+            text-align: center;
+        }
+        .price{
+            text-align: center;
+            color: orange;
+        }
+        #add{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="top">
+
+    <ul class="login">
+        <li>
+            <a href="login.html" name="register">登陆</a>
+            <a href="register.html" name="login">注册</a>
+        </li>
+        <li><a>订单</a></li>
+        <li><a name="cart">购物车</a></li>
+    </ul>
+</div>
+<header class="logo">
+    <a href="商城首页.html">
+        <img src="img/一淘.png">
+    </a>
+    <div class="input">
+        <input class="search">
+        <button class="butt">
+            <img src="img/search.png" >
+        </button>
+        <a href="#" class="app">
+            <img src="img/app.png" style="margin-left: 550px">
+        </a>
+    </div>
+    <div class="QR code">
+        <img src="//img.alicdn.com/tps/TB1pjAHPXXXXXc_XFXXXXXXXXXX-238-323.png" style="position: absolute;height: 160px;width: 110px;margin-left: 1110px;display: none" class="codeImg" >
+    </div>
+
+    <div class="navitor">
+        <ul class="oul"></ul>
+    </div>
+</header>
+<div class="text">
+    <ul class="oul2"></ul>
+</div>
+<footer class="bottom">
+    <div class="bottom-dl">
+        <dl >
+            <dt>关于我们</dt>
+            <dd><a href="#">关于一淘</a></dd>
+            <dd><a href="#">法律声明</a></dd>
+            <dd><a href="#">诚聘人才</a></dd>
+            <dd><a href="#">廉政邮箱</a></dd>
+        </dl>
+        <dl>
+            <dt>帮助中心</dt>
+            <dd><a href="#">新手指南</a></dd>
+            <dd><a href="#">关于返利</a></dd>
+            <dd><a href="#">关于集分宝</a></dd>
+            <dd><a href="#">关于会员特权</a></dd>
+            <dd><a href="#">联系客服</a></dd>
+        </dl>
+        <dl>
+            <dt>手机一淘</dt>
+            <dd><a href="#"><img src="//img.alicdn.com/tps/TB1pjAHPXXXXXc_XFXXXXXXXXXX-238-323.png" style="height:162px;width: 119px"></a></dd>
+        </dl>
+        <dl>
+            <dt>优惠地图</dt>
+            <dd><a href="#">品牌特卖</a></dd>
+            <dd><a href="#">限时闪购</a></dd>
+        </dl>
+        <dl>
+            <dt>商家合作</dt>
+            <dd><a href="#">报名入口</a></dd>
+            <dd><a href="#">商家端问题</a></dd>
+        </dl>
+    </div>
+    <div class="link-list">
+        <p class="link-list-p">
+            <a href="#">阿里巴巴集团</a>
+            <a href="#">淘宝网</a>
+            <a href="#">天猫</a>
+            <a href="#">聚划算</a>
+            <a href="#">全球速卖通</a>
+            <a href="#">阿里巴巴国际交易市场</a>
+            <a href="#">1688</a>
+            <a href="#">阿里妈妈</a>
+            <a href="#">阿里旅行·去啊</a>
+            <a href="#">万网</a>
+            <a href="#">高德</a>
+            <a href="#">优视</a>
+            <a href="#">友盟</a>
+            <a href="#">酷盘</a>
+            <a href="#">虾米</a>
+            <a href="#">天天动听</a>
+            <a href="#">来往</a>
+            <a href="#">钉钉</a>
+            <a href="#">11 Main</a>
+            <a href="#">支付宝</a>
+        </p>
+        <p class="link-list-copyright">
+            Copyright © 2010-2017 ETAO.COM 版权所有
+            增值电信业务经营许可证：浙B2-20080224
+        </p>
+    </div>
+</footer>
+</body>
+<script src="js/myajax.js" charset="utf-8"></script>
+<script>
+    function getQueString(name){
+        var search=location.search.substr(1);
+        var reg=new RegExp("(^|&)"+name+"=([^&]*)(&|$)");
+        var result=search.match(reg);
+        if(result===null)return null;
+        return decodeURIComponent(result[2]);
+
+    }
+    var oUl = document.querySelector('.oul');
+    var oA=document.querySelector("a[name=cart]");
+    var oLogin=document.querySelector("a[name=login]");
+    var oUsername=document.querySelector("a[name=register]");
+
+    myajax.get('http://h6.duchengjiu.top/shop/api_cat.php', {}, function(error, responseText){
+        var json = JSON.parse(responseText);
+        var data = json.data;
+        for (var i = 0; i < data.length; i++) {
+            var obj = data[i];
+            oUl.innerHTML += `<li><a href="商城首页.html?cat_id=${obj.cat_id}">${ obj.cat_name}</a></li>`;
+        }
+//        document.querySelector(".top").innerHTML+=`<div class="login"><a href="login.html" name="register">登陆</a><a href="register.html" name="login">注册</a></div>`
+        if(localStorage.username){
+            oA.href="cart.html";
+            oUsername.innerHTML="你好" + localStorage.username;
+            oLogin.innerHTML="退出";
+            oLogin.onclick=function(){
+                localStorage.username="";
+                oLogin.href="商城首页.html"
+            };
+            if( oUsername.innerHTML===("你好" + localStorage.username)){
+                oUsername.href="商城首页.html"
+            }
+        }
+        else if(!localStorage.username){
+            oA.onclick=function(){
+                alert("请先登录");
+            }
+        }
+    });
+    var goods_id = getQueryString('goods_id');
+    var oUl2=document.querySelector(".oul2");
+    console.log(goods_id);
+    myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {
+        // goods_id: goods_id ES5
+        goods_id //ES6
+    }, function(err, responseText){
+        var json = JSON.parse(responseText);
+        var obj = json.data[0];
+        console.log(json);
+       oUl2.innerHTML = `
+      <div >
+        <div class="text"><img src="${obj.goods_thumb}"></div>
+        <div class="goodsName">${obj.goods_name}</div>
+       <div class="price"> ￥:${obj.price}</div>
+        <div id="add"><input type="button" id="add-to-cart" value="添加到购物车"></div>
+      </div>
+      `;
+    });
+
+    document.body.onclick = function(event) {
+        event = event || window.event;
+        var target = event.target || event.srcElement;
+        if (target.id === 'add-to-cart') {
+            console.log('添加到购物车');
+            myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token='+localStorage.token,
+                {goods_id, number:1},
+                function(err, responseText) {
+                    var json = JSON.parse(responseText);
+                    console.log(json);
+                    if (json.code === 0) {
+                        alert('添加到购物车成功');
+                        location.href="商城首页.html"
+                    }
+
+                })
+        }
+    }
+    var oApp=document.querySelector(".app");
+    var code=document.querySelector(".codeImg");
+    oApp.onmouseover=function(){
+        code.style.display='block';
+    }
+    oApp.onmouseout=function(){
+        code.style.display='none'
+    }
+</script>
+</body>
+</html>
