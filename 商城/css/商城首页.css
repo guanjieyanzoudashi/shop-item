@@ -2,9 +2,23 @@
     margin: 0;
     padding: 0;
 }
+input,a{
+    outline:none
+}
 .top{
     height: 40px;
     background-color: #FB3434;
+}
+.top .slogan{
+    float: left;
+    font-size: 10px;
+    color: white;
+    font-family: 幼圆;
+    line-height: 40px;
+    margin-left: 20px
+}
+.top ul li{
+    list-style: none;
 }
 .login{
     float: right;
@@ -67,10 +81,10 @@
     /*width: 110px;*/
 
 /*}*/
-/*.QR code{*/
-    /*height: 160px;*/
-    /*width: 110px;*/
-/*}*/
+.QR code{
+    height: 300px;
+    width: 110px;
+}
 .oul{
     display:table;
     height:50px;
@@ -113,7 +127,8 @@
     background-size:100%;
     Background-repeat:no-repeat;
     margin-top: 20px ;
-    margin-left: 35px;
+    margin-bottom: 20px;
+    margin-left: 30px;
     color: gray;
     border: solid 1px;
 }
@@ -136,13 +151,14 @@
 .text{
     margin: 0 auto;
     background-color: #F6F6F6;
+    /*position: relative;*/
 
 }
 .oul2{
     display:table;
     margin: 0 auto;
     width: 1300px;
-    background-color:#FAFAD2;
+    background-color:white;
 
 }
 
@@ -234,3 +250,4 @@ dd a :hover{
 .advertising{
 margin-top: -108px;
 }
+

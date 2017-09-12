@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.product {
+  position: relative;
+  height: 438px;
+}
+.smallPic {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  border: 1px solid #ccc;
+}
+.smallPic img{
+  width: 270px;
+  height: 270px;
+}
+.smallPic .zoom {
+  position: absolute;
+  width: 175px;
+  height: 175px;
+  top: 100px;
+  left: 100px;
+  background-color: #FEDE4F;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  border: 1px solid #aaa;
+  display: none;
+}
+.bigPic {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 0px;
+  left: 275px;
+  border: 1px solid black;
+  display: none;
+  background-size: 800px 800px;
+}
+.bigImg{
+  height: 800px;
+  width: 800px;
+}
