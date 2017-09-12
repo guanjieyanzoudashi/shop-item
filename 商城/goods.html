@@ -260,7 +260,7 @@
            <button style="float: left;height: 18px;width: 17px" name="add">+</button>
            <button style="float: left;height: 18px;width: 17px" name="subtract">-</button>
            </div>
-           <input type="button" id="add-to-cart" >
+           <input type="button" id="add-to-cart" name="add-to-cart">
            </div>
 
           </div>
@@ -271,6 +271,7 @@
         var oAdd=document.querySelector("button[name=add]");
         var oSubtract=document.querySelector("button[name=subtract]");
         var oNumber=document.querySelector("input[name=goods-number]");
+        var oAddCard=document.querySelector("input[name=add-to-cart]");
 
         oAdd.onclick=function(){
 
@@ -286,6 +287,23 @@
             }
         }
         zoom(obj.goods_thumb);
+
+        oAddCard.onclick=function(){
+            myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token='+localStorage.token,
+                {goods_id, number: oNumber.value},
+                function(err, responseText) {
+                    var json = JSON.parse(responseText);
+                    console.log(json);
+                    if (json.code === 0) {
+                        alert('添加到购物车成功');
+                        location.href="商城首页.html"
+                    } if (json.code !== 0) {
+                        alert('已经添加到购物车');
+                        location.href="商城首页.html"
+                    }
+
+                })
+        }
     });
 
 //    document.body.onclick = function(event) {

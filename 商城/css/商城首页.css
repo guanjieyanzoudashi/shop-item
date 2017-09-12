@@ -135,6 +135,10 @@ input,a{
 .goods:hover{
     border: 1px solid red;
 }
+/*.goods-price{*/
+    /*background-color: orangered;*/
+    /*co*/
+/*}*/
 .navitor{
     background-color: orange;
     height: 50px;
@@ -161,6 +165,15 @@ input,a{
     background-color:white;
 
 }
+.decorate{
+    background-image:url("http://img.alicdn.com/tps/TB1czH5PXXXXXbNXpXXXXXXXXXX-136-122.png")  ;
+
+    position: absolute;
+    background-size: 60px 60px;
+    width: 60px;
+    height: 60px;
+
+}
 
 span{
     display: block;
@@ -176,8 +189,10 @@ span{
 }
 .oul2 p{
     float: right;
-    color: orange;
+    color: white;
+    background-color: orange;
     margin-top: 30px;
+   margin-right: 5px;
 
 }
 .decomposition{

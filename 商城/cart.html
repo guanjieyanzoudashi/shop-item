@@ -26,11 +26,58 @@
 
 
         }
+        table input{
+            width:50px;
+            height: 25px;
+        }
+        .dog{
+            width: 50px;
+            height: 25px;
+            float: right;
+            position: relative;
+            top: -48px;
+            left: 17px;
+            text-decoration: none;
+            color: grey;
+        }
+            .fis{
+                width: 95px;
+                height: 30px;
+                float: right;
+                position: relative;
+                top: -50px;
+                color: white;
+                background-color: red;
+                border: 1px solid red;
+                cursor:pointer;
+            }
+        .dog a:hover{
+            text-decoration:none;
+            color: black;
+
+        }
+        .nue{
+            position: relative;
+            top: 20px;
+        }
+        .clol{
+            position: relative;
+            top: 1px;
+            left: -39px;
+        }
+        .var{
+            color: white;
+            background-color: orange;
+            border: 1px solid red;
+            cursor:pointer;
+        }
     </style>
 </head>
 <body>
 <div class="top">
-
+    <ul class="slogan" >
+        <li>欢迎来到一淘网，阿里巴巴旗下生活省钱利器！</li>
+    </ul>
     <ul class="login">
         <li>
             <a href="login.html" name="register">登陆</a>
@@ -49,12 +96,12 @@
         <button class="butt">
             <img src="img/search.png" >
         </button>
-        <a href="#" class="app" style="width: 310px;margin-left: 550px">
-            <img src="img/app.png">
+        <a href="#"  class="app">
+            <img src="img/app.png" style="margin-left: 550px">
         </a>
     </div>
     <div class="QR code">
-        <img src="//img.alicdn.com/tps/TB1pjAHPXXXXXc_XFXXXXXXXXXX-238-323.png" style="position: absolute;height: 160px;width: 110px;margin-left: 1110px;display: none" class="codeImg" >
+        <img src="//img.alicdn.com/tps/TB1pjAHPXXXXXc_XFXXXXXXXXXX-238-323.png" style="position: absolute;height: 160px;width: 110px;margin-left: 1200px;display: none" class="codeImg" >
     </div>
 
 <div class="navitor">
@@ -74,7 +121,7 @@
             <td>操作</td>
         </tr>
     </table>
-    <div>小计：<span id="sum">0</span> <input type="button" id="clear-cart" value="清空购物车"> <a href="checkout.html">结算</a></div>
+    <div style="height: 110px"><p class="nue">小计：</p><span id="sum" class="clol">0</span> <a href="checkout.html" class="dog">结算</a><input type="button" id="clear-cart" value="清空购物车" class="fis"> </div>
 </div>
 <!--</div>-->
 <footer class="bottom">
@@ -197,7 +244,7 @@
                             <td><input data-id="${obj.goods_id}" type="number" name="number" min="1" max="10" value="${obj.goods_number}" /></td>
                             <td>￥${obj.goods_price}</td>
                             <td name="sum">￥${obj.goods_sum}</td>
-                            <td><input data-id="${obj.goods_id}" type="button" name="delete" value="删除"></td>
+                            <td><input data-id="${obj.goods_id}" type="button" name="delete" value="删除" class="var"></td>
                           </tr>
                           `;
         }
