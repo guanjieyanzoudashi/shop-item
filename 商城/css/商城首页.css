@@ -5,6 +5,22 @@
 input,a{
     outline:none
 }
+ul li{
+    list-style: none;
+}
+.backtotop {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    right: 0;
+    bottom: 30px;
+    background-color: #5e4a4a;
+    display: none;
+    text-decoration:none;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+}
 .top{
     height: 40px;
     background-color: #FB3434;
@@ -84,6 +100,8 @@ input,a{
 .QR code{
     height: 300px;
     width: 110px;
+    position: absolute;
+    z-index: 1;
 }
 .oul{
     display:table;
@@ -139,6 +157,54 @@ input,a{
     /*background-color: orangered;*/
     /*co*/
 /*}*/
+.slidebar {
+    height: 340px;
+    top:200px;
+    position: absolute;
+    background-color: #fff;
+    overflow: hidden;
+    text-align: center;
+    margin-left: 1080px;
+}
+
+.tip {
+    color: #333;
+    font-size: 12px;
+    line-height: 18px;
+    height: 18px;
+}
+.userinfo{
+    z-index: -1;
+}
+
+
+.loginbtn {
+    display: inline-block;
+    width: 84px;
+    height: 26px;
+    margin: 13px 2px 0;
+    border-radius: 4px;
+    line-height: 26px;
+    border: 1px solid #fb3434;
+    color: #fb3434;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.separate {
+    display: block;
+    width: 100%;
+    height: 1px;
+    overflow: hidden;
+    background: #eee;
+    margin-top: 8px;
+}
+a{
+    text-decoration: none;
+}
+.QRcode {
+    padding-top: 10px;
+}
 .navitor{
     background-color: orange;
     height: 50px;

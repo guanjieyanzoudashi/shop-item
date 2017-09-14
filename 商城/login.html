@@ -100,7 +100,7 @@
            width: 306px;
            height: 23px;
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
             line-height: 23px;
             display: none;
         }
@@ -132,7 +132,7 @@
             <img src="http://img.alicdn.com/tps/TB1jo_IOFXXXXbVXVXXXXXXXXXX-102-50.png" style="width: 51px;height: 25px;padding: 10px">
         </div>
 
-        <div class="login-error">  <b ></b>账户名与密码不匹配，请重新输入</div>
+        <div class="login-error">  <b ></b></div>
         <div style="position: relative;border: 1px solid #bdbdbd;height: 38px;width: 304px;margin: 0 auto;top: 35px;">
         <label  class="login-label name-label"></label>
        <input id="loginName" type="text" class="itxt" name="loginUserName" tabindex="1" autocomplete="off" placeholder="邮箱/用户名/已验证手机">
@@ -205,31 +205,28 @@
                 else if(json.message==="用户名不存在"){
                     oError.innerText="用户名不存在，请重新输入";
                     oError.style.display="block";
-                    var ob=document.createElement("b")
-                    oError.appendChild(ob);
-//                    oB.style.display="block";
-
-
+                    var oB=document.createElement("b");
+                    oError.appendChild(oB);
                 }
                 else if(json.message==="密码错误"){
                     oError.innerText="密码错误，请重新输入";
                     oError.style.display="block";
-                    var ob=document.createElement("b")
-                    oError.appendChild(ob);
-//                    oB.style.display="block";
-
+                    var oB=document.createElement("b");
+                    oError.appendChild(oB);
                 }
                 else if(json.message==="密码最小长度为6位"){
-                    oError.innerText="密码最小长度为6位，请重新输入";
+                    oError.innerText+="密码最小长度为6位，请重新输入";
                     oError.style.display="block";
-                    var ob=document.createElement("b")
-                    oError.appendChild(ob);
-//                    oB.style.display="block";
-
+                    var oB=document.createElement("b");
+                    oError.appendChild(oB);
+                }
+                else if(json.message==="用户名不合法，请填写3-20位的英文数字下划线"){
+                    oError.innerText="用户名不合法，请填写3-20位的英文数字下划线";
+                    oError.style.display="block";
+                    var oB=document.createElement("b");
+                    oError.appendChild(oB);
                 }
                 console.log(json);
-
-
                 console.log(localStorage.token);
                 console.log(localStorage.username);
             });

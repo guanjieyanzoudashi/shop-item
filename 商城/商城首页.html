@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+
+    </style>
    <link rel="stylesheet" href="css/商城首页.css">
     <link rel="stylesheet" href="css/lunbo.css">
 </head>
@@ -36,7 +39,7 @@
         </a>
     </div>
     <div class="QR code">
-    <img src="//img.alicdn.com/tps/TB1pjAHPXXXXXc_XFXXXXXXXXXX-238-323.png" style="position: absolute;height: 160px;width: 110px;margin-left: 1200px;display: none" class="codeImg" >
+    <img src="//img.alicdn.com/tps/TB1pjAHPXXXXXc_XFXXXXXXXXXX-238-323.png" style="position: absolute;height: 160px;width: 110px;margin-left: 1200px;display: none;z-index: 1" class="codeImg" >
     </div>
 
 <div class="navitor">
@@ -68,9 +71,25 @@
         </ol>
     </div>
 </div>
+    <div class="slidebar ">
+        <div class="userinfo">
+            <img class="avatar" src="//img.alicdn.com/tps/TB1oaisOFXXXXatXVXXXXXXXXXX-70-70.png" alt="立刻登录，立刻省钱">
+            <p class="tip">立刻登录，立刻省钱</p>
+            <a href="login.html" class="loginbtn">用户登录</a>
+            <a href="register.html" class="loginbtn" >新用户注册</a>
+            <span class="separate"></span>
+            <div class="QRcode">
+                <div style="margin-bottom:8px;">
+                    <img src="https://img.alicdn.com/tps/TB1tvcJPXXXXXcVXVXXXXXXXXXX-316-36.png" style="width:158px;height:18px">
+                </div>
+                <img src="//img.alicdn.com/tps/TB1vTZ3PXXXXXayXXXXXXXXXXXX-212-212.png" alt="扫码签到天天领钱!" style="height: 110px;width: 110px">
+            </div>
+        </div>
+    </div>
 <div class="advertising"><img src="img/超省.png"></div>
 <div class="text">
     <ul class="oul2"></ul>
+    <a href="javascript:;" class="backtotop" id="backtotop">^ <p>返回</p><p>顶部</p></a>
 </div>
 </div>
 <div class="decomposition"></div>
@@ -235,7 +254,48 @@
     oAppImage.onmouseout=function(){
     code.style.display='none'
 }
+    var oBack = document.querySelector('#backtotop');
+    window.onscroll = function(){
+        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (scrollTop > 500) {
+            oBack.style.display = 'block';
+        } else {
+            oBack.style.display = 'none';
+        }
+    }
+
+    oBack.onclick = function() {
+        scrollAnimate(0, 1000);
+        // document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }
+
+    function scrollAnimate(target, timer) {
+        var interval = 20;
+        var frame = 0;
+        var frames = timer / interval;
+        var start = document.body.scrollTop || document.documentElement.scrollTop;
+        var distance = target - start;
+        var timer;
+        clearInterval(timer);
+        timer = setInterval(function(){
+            frame++;
+            if (frame >= frames) {
+                clearInterval(timer);
+            }
+            //第一个参数t表示当前帧
+            //第二个b表示起始位置
+            //第三个c表示变化量
+            //第四个d表示总帧数
+            document.body.scrollTop = document.documentElement.scrollTop = CubicEaseInOut(frame, start, distance, frames);
+        }, interval);
+
+        function CubicEaseInOut(t,b,c,d){
+            if ((t/=d/2) < 1) return c/2*t*t*t + b;
+            return c/2*((t-=2)*t*t + 2) + b;
+        }
+    }
 </script>
 
 </body>
 </html>
+

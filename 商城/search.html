@@ -3,6 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .return{
+        position: absolute;
+          margin-left: 340px;
+          bottom: 0;
+
+        }
+        .return li{
+          float: left;
+            color: white;
+        }
+    </style>
     <link rel="stylesheet" href="css/商城首页.css">
     <link rel="stylesheet" href="css/lunbo.css">
 </head>
@@ -161,7 +173,8 @@
         console.log(json);
         var data = json.data;
         if (data.length === 0) {
-            oContent.innerHTML = "未搜索到商品, <span id='second'>5</span>秒后跳回首页";
+            oContent.innerHTML =` <div style="background-image:url('img/404.jpg');height: 405px;width:900px;background-repeat: no-repeat;margin: 0 auto;position: relative"><ul class="return"><li>未搜索到商品,</li><li id="second">5</li><li>秒后跳回首页</li></ul></div>`;
+            oContent.style.backgroundColor="#AFDBF4";
             var oSecond = oContent.querySelector('#second');
             var timer = setInterval(() => {
                 var second = parseInt(oSecond.innerText);
