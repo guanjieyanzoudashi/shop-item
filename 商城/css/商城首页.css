@@ -175,9 +175,8 @@ ul li{
 }
 .userinfo{
     z-index: -1;
+    margin-top: 10px;
 }
-
-
 .loginbtn {
     display: inline-block;
     width: 84px;
@@ -197,7 +196,7 @@ ul li{
     height: 1px;
     overflow: hidden;
     background: #eee;
-    margin-top: 8px;
+    margin-top: 30px;
 }
 a{
     text-decoration: none;
@@ -241,7 +240,7 @@ a{
 
 }
 
-span{
+.oul2 span{
     display: block;
     height: 50px;
     width: 220px;

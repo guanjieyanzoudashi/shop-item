@@ -5,6 +5,45 @@
     <title>Title</title>
     <link rel="stylesheet" href="css/商城首页.css">
     <style>
+        .form-item-account {
+            z-index: 13;
+        }
+        .input-tip {
+            color: #c5c5c5;
+            height: 27px;
+            font-size: 12px;
+            padding-top: 5px;
+        }
+        .field {
+            border: 0 none;
+            font-size: 14px;
+            width: 190px;
+            height: 19px;
+            padding-bottom: 11px;
+            padding-left: 20px;
+            padding-top: 16px;
+        }
+        .form-item {
+            position: relative;
+            border: solid 1px #ddd;
+            width: 398px;
+            height: 52px;
+            z-index: 0;
+        }
+        .have-account{
+            font-size: 16px;
+            float: right;
+            margin-top: 55px;
+            color: #999;
+
+        }
+        .have-account a{
+            text-decoration: none;
+            color: black;
+        }
+        .have-account a:hover{
+            color: red;
+        }
         .out{
             width: 600px;
             height: 300px;
@@ -51,6 +90,23 @@
         .error {
             color: red;
         }
+        .form-item label {
+            float: left;
+            width: 90px;
+            height: 52px;
+            line-height: 52px;
+            padding-left: 20px;
+        }
+        .btn-register {
+            width: 400px;
+            height: 54px;
+            color: #fff;
+            background: #e22;
+            border: 0;
+            font-size: 16px;
+            font-family: "Microsoft YaHei","Hiragino Sans GB";
+            cursor: pointer;
+        }
 
     </style>
 </head>
@@ -59,25 +115,39 @@
     <a href="商城首页.html">
         <img src="img/一淘.png">
     </a>
-    <div class="input">
-        <input class="search">
-        <button class="butt">
-            <img src="img/search.png" >
-        </button>
-        <a href="#" class="app">
-            <img src="img/app.png" style="margin-left: 550px">
-        </a>
-    </div>
-    <div class="QR code">
-        <img src="//img.alicdn.com/tps/TB1pjAHPXXXXXc_XFXXXXXXXXXX-238-323.png" style="position: absolute;height: 160px;width: 110px;margin-left: 1110px;display: none" class="codeImg" >
-    </div>
+    <div class="have-account" style="float: right">已有账号？ <a href="register.html">请登陆</a></div>
+    <hr style="margin-top: 30px">
 
 </header>
-<div class="out">
-    <div class="inside">
-        <input type="text" name="username" placeholder="请输入用户名"><span></span>
-        <input type="password" name="password" placeholder="请输入密码">
-        <a href="#"><input type="submit" value="注册" class="login"></a>
+
+        <!--<input type="text" name="username" placeholder="请输入用户名"><span></span>-->
+        <!--<input type="password" name="password" placeholder="请输入密码">-->
+        <!--<a href="#"><input type="submit" value="注册" class="login"></a>-->
+<div style="margin: 0 auto;width: 450px;margin-top: 30px;">
+<div class="form-item form-item-account" id="form-item-account">
+    <label>用　户　名</label>
+    <!--<txt style="position: absolute; z-index: 2; line-height: 46px; margin-left: 20px; margin-top: 1px; font-size: 14px; font-family: "Microsoft YaHei", "Hiragino Sans GB"; color: rgb(204, 204, 204); display: inline;">您的账户名和登录名</txt>-->
+    <input type="text" id="form-account" name="username" class="field" autocomplete="off" maxlength="20" placeholder=" " >
+</div>
+<div class="input-tip">
+    <span class="userName"></span>
+</div>
+<div class="form-item" style="z-index: 12;">
+    <label>设 置 密 码</label>
+    <input type="password" name="password" id="form-pwd" class="field" maxlength="20" placeholder=" " >
+</div>
+<div class="input-tip">
+   <span class="oPassWord"></span>
+</div>
+<div class="form-item" style="z-index: 12">
+    <label>确 认 密 码</label>
+    <input type="password" name="pwdRepeat" id="form-equalTopwd" class="field" placeholder=" " maxlength="20" >
+</div>
+<div class="input-tip">
+    <span></span>
+</div>
+    <div>
+        <button type="submit" class="btn-register">立即注册</button>
     </div>
 </div>
 <footer class="bottom">
@@ -146,7 +216,8 @@
 <script>
     var oUsername = document.querySelector('input[name=username]');
     var oPassword = document.querySelector('input[name=password]');
-    var oSubmit = document.querySelector('input[type=submit]');
+    var oSubmit = document.querySelector('button[type=submit]');
+    var oPwdRepeat=document.querySelector('input[name=pwdRepeat]');
 
     oSubmit.onclick = function(){
         //先进行js校验用户名和密码符合规范，js校验通过
@@ -160,29 +231,62 @@
             }, function(err, responseText){
                 var json = JSON.parse(responseText);
                 if(json.message==="注册成功"){
-//                    alert("注册成功");
+                    alert("注册成功");
                     location.href="商城首页.html";
                 }
                 console.log(json);
             });
     };
-//    var oInput = document.querySelector('input');
-    var oSpan = document.querySelector('span');
+    //    var oInput = document.querySelector('input');
+    var oUserNameSpan = document.querySelector('.userName');
+    var oPassWordSpan = document.querySelector('.oPassWord');
+
     oUsername.onblur = function() {
         myajax.post('http://h6.duchengjiu.top/shop/api_user.php',
             {status: 'check', username: oUsername.value},
             function(error, responseText) {
                 var json = JSON.parse(responseText);
-                oSpan.innerText = json.message;
-                oSpan.style.display = 'block';
+                console.log(json)
+                if(json.message==="少传参数username"){
+                    oUserNameSpan.innerText=''
+                }
+                else if(json.message==="用户名可用"){
+                    oUserNameSpan.innerText='用户名可用';
+                }
+                else if(json.message==="用户名已存在"){
+                    oUserNameSpan.innerText='用户名存在'
+                }
+//                oUserNameSpan.innerText = json.message;
+
+                oUserNameSpan.style.display = 'block';
                 if (json.code === 0) {
-                    oSpan.className = "right";
+                    oUserNameSpan.className = "right";
                 } else {
-                    oSpan.className = "error";
+                    oUserNameSpan.className = "error";
                 }
 
             });
 
     }
+//    if(oPwdRepeat.value!==oPassword.value){
+//
+//    }
+//    oPassword.onblur = function() {
+//        myajax.post('http://h6.duchengjiu.top/shop/api_user.php',
+//            {status: 'check', password: oPassword.value},
+//            function(error, responseText) {
+//                var json = JSON.parse(responseText);
+//                console.log(json);
+//                oPassWordSpan.innerText = json.message;
+//                oPassWordSpan.style.display = 'block';
+//                if (json.code === 0) {
+//                    oPassWordSpan.className = "right";
+//                } else {
+//                    oPassWordSpan.className = "error";
+//                }
+//
+//            });
+//
+//    }
 </script>
 </html>
